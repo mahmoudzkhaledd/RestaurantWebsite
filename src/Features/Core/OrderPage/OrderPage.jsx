@@ -1,15 +1,14 @@
 import { useQuery } from "react-query";
 import { webConfig } from "../../../Utils/WebConfigs";
 import { userAxios } from "@/Utils/UserAxios";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Spinner from "@/GeneralElements/Spinner/Spinner";
 import SorryDiv from "@/GeneralComponents/SorryDiv/SorryDiv";
 import moment from "moment";
 import Button from "@/GeneralElements/Button/Button";
 import { useState } from "react";
-import OrderModal from "@/GeneralComponents/OrderModal/OrderModal";
-import OrderItem from "../Checkout/Checkout/MealItem";
 import UserAddressComponent from "@/GeneralComponents/UserAddress/UserAddressComponent";
+import OrderedMeals from "./Components/OrderedMeals";
 
 function getStatusNumber(status) {
     const arr = (status != "refused" && status != "canceled") ? webConfig.orderStages : status == "refused" ? webConfig.refusedStages : webConfig.canceledStages;
@@ -23,7 +22,6 @@ function getStatusNumber(status) {
 export default function OrderPage({ }) {
     const params = useParams();
     const [loading, setLoading] = useState(null);
-    const [showModal, setModal] = useState(false);
 
     const { isLoading, error, data, refetch } = useQuery(
         `get-order-${params.id}`,
@@ -56,82 +54,71 @@ export default function OrderPage({ }) {
 
     return (
         <div >
+            <h5>طلب رقم #{order.number}</h5>
+            <br />
             <div className=" grid grid-cols-2 gap-6 mb-6">
-                <div>
-                    <h5>طلب رقم #{order.number}</h5>
-                    <br />
 
-                    <div className="bg-[color:var(--secondary)] space-y-4  rounded-2xl p-4 mb-6">
-                        <h3 className="mb-4 text-xl font-bold">معلومات عن الطلب</h3>
-                        <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                            <div>
-                                <dt className="text-sm font-medium ">كود الطلب</dt>
-                                <dd className="text-sm font-semibold text-fade">
-                                    {order._id}
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-sm font-medium ">رقم الطلب</dt>
-                                <dd className="text-sm font-semibold text-fade">
-                                    {order.number}
-                                </dd>
-                            </div>
-                            <div>
-                                <dt className="text-sm font-medium ">تاريخ الإنشاء</dt>
-                                <dd className="text-sm font-semibold text-fade">
-                                    {moment(order.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
-                                </dd>
-                            </div>
-
-                        </dl>
-                        <div className=" space-y-2">
-                            <h6 className=" font-bold">عنوان الطلب</h6>
-                            <UserAddressComponent address={order.address} />
-                            {
-                                order.status == "refused" && <>
-                                    <br />
-                                    <div
-                                        id="alert-2"
-                                        className="flex items-center p-4 mb-4  rounded-lg bg-red-500 "
-                                        role="alert"
-                                    >
-                                        <i className="fa-solid fa-circle-exclamation text-2xl "></i>
-                                        <span className="sr-only"></span>
-                                        <div className="ms-3 text-sm font-medium inline-block w-5/6">
-                                            <h6 className=" mb-1 font-bold">سبب الرفض</h6>
-
-                                            <p className=" break-words">{order.refuseReason || ""}</p>
-                                        </div>
-
-                                    </div>
-
-                                </>
-                            }
-
-                            {
-                                (order.status == "pending" || order.status == 'canceled' || order.status == 'accepted') && <>
-                                    <br />
-                                    <div className="flex flex-row gap-4">
-                                        <Button loading={loading == 'cancel'} disabled={loading != null} onClick={cancelOrder}  >
-                                            {order.status == 'canceled' ? "تفعيل الطلب" : "الغاء الطلب"}
-                                        </Button>
-                                    </div>
-                                </>
-                            }
+                <div className="bg-[color:var(--secondary)] h-fit space-y-4  rounded-2xl p-4 mb-6">
+                    <h3 className="mb-4 text-xl font-bold">معلومات عن الطلب</h3>
+                    <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+                        <div>
+                            <dt className="text-sm font-medium ">كود الطلب</dt>
+                            <dd className="text-sm font-semibold text-fade">
+                                {order._id}
+                            </dd>
                         </div>
+                        <div>
+                            <dt className="text-sm font-medium ">رقم الطلب</dt>
+                            <dd className="text-sm font-semibold text-fade">
+                                {order.number}
+                            </dd>
+                        </div>
+                        <div>
+                            <dt className="text-sm font-medium ">تاريخ الإنشاء</dt>
+                            <dd className="text-sm font-semibold text-fade">
+                                {moment(order.createdAt).format("MMMM Do YYYY, h:mm:ss a")}
+                            </dd>
+                        </div>
+
+                    </dl>
+                    <div className=" space-y-2">
+                        <h6 className=" font-bold">عنوان الطلب</h6>
+                        <UserAddressComponent address={order.address} />
+                        {
+                            order.status == "refused" && <>
+                                <br />
+                                <div
+                                    id="alert-2"
+                                    className="flex items-center p-4 mb-4  rounded-lg bg-red-500 "
+                                    role="alert"
+                                >
+                                    <i className="fa-solid fa-circle-exclamation text-2xl "></i>
+                                    <span className="sr-only"></span>
+                                    <div className="ms-3 text-sm font-medium inline-block w-5/6">
+                                        <h6 className=" mb-1 font-bold">سبب الرفض</h6>
+
+                                        <p className=" break-words">{order.refuseReason || ""}</p>
+                                    </div>
+
+                                </div>
+
+                            </>
+                        }
+
+                        {
+                            (order.status == "pending" || order.status == 'canceled' || order.status == 'accepted') && <>
+                                <br />
+                                <div className="flex flex-row gap-4">
+                                    <Button loading={loading == 'cancel'} disabled={loading != null} onClick={cancelOrder}  >
+                                        {order.status == 'canceled' ? "تفعيل الطلب" : "الغاء الطلب"}
+                                    </Button>
+                                </div>
+                            </>
+                        }
                     </div>
                 </div>
-                <div className=" h-fit rounded-md bg-[color:var(--secondary)] p-5 px-6 space-y-4">
-                    <h6 className=" font-bold mb-4 text-lg">الوجبات المطلوبة</h6>
-                    {
-                        order.orders.map((e, idx) => <OrderItem order={e} key={idx} />)
-                    }
-                    <hr className="my-4 border-gray-300"/>
-                    <div className="flex justify-between items-center">
-                        <p className=" font-bold">المبلغ الذي سيتم دفعه</p>
-                        <p className=" font-bold">{data.data.total} جنيه</p>
-                    </div>
-                </div>
+
+                <OrderedMeals orders={order?.orders} total={data?.data?.total} />
             </div>
             <h5 className=" font-bold mb-5">حالة الطلب</h5>
             <ol className="items-start sm:flex list-none mb-5">

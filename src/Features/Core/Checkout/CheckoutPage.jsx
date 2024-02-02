@@ -3,7 +3,6 @@ import Spinner from "@/GeneralElements/Spinner/Spinner";
 import { userAxios } from "@/Utils/UserAxios";
 import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
-import MenuItem from "../LandingPage/Components/Menu/MenuItem";
 import OrderItem from "./Checkout/MealItem";
 import { useState } from "react";
 import { userStore } from "@/hooks/UserRedux/UserStore";
@@ -76,46 +75,52 @@ export default function CheckoutPage({ }) {
         </div>
     }
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <div className="col-span-1 px-4 pt-8">
+        <div>
+            <div className="mb-7">
                 <p className="text-xl font-medium">ملخص الطلب</p>
                 <p className="text-fade">
                     تحقق من العناصر الخاصة بك.
                 </p>
-                <div className="mt-8 space-y-3 rounded-lg bg-[color:var(--secondary)] px-2 py-4 sm:px-6">
-                    {
-                        cart.map((e, idx) => <div key={idx}>
-                            <OrderItem deleteCartItem={deleteCartItem} order={e} />
-                            {
-                                idx != cart.length - 1 && <hr className=" border-gray-600" />
-                            }
-                        </div>)
-                    }
-                </div>
             </div>
-            <div className="col-span-1 h-fit mt-10 bg-[color:var(--secondary)] rounded-md px-4 pt-8 lg:mt-0">
-                <p className="text-xl font-bold">تأكيد العنوان</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-                <hr className="my-4" />
-                <div className="flex flex-col gap-4">
-                    {
-                        userStore.getState().user.user?.addresses.map((e, idx) =>
-                            <UserAddressComponent seleted={address} address={e} key={idx} onClick={setAddress} />)
-                    }
-                    <Link to={'/settings'} className="p-4 flex hover:text-[color:var(--text)] justify-between items-center rounded-md bg-[color:var(--secondary-select)]">
-                        <p className="text-md">إضافة عنوان</p>
-                        <i className="fa-solid fa-circle-plus text-lg"></i>
-                    </Link>
+                <div className="col-span-1 ">
+
+                    <div className=" space-y-3 rounded-lg bg-[color:var(--secondary)] px-2 py-4 sm:px-6">
+                        {
+                            cart.map((e, idx) => <div key={idx}>
+                                <OrderItem deleteCartItem={deleteCartItem} order={e} />
+                                {
+                                    idx != cart.length - 1 && <hr className=" border-gray-600" />
+                                }
+                            </div>)
+                        }
+                    </div>
                 </div>
-                <hr className="mt-5" />
-                <div className="flex justify-between items-center mt-6">
-                    <h6 className="text-lg font-semibold">الإجمالي</h6>
-                    <h6 className="text-lg font-semibold">{total} جنيه</h6>
+                <div className="col-span-1 h-fit  bg-[color:var(--secondary)] rounded-md px-4 pt-8 ">
+                    <p className="text-xl font-bold">تأكيد العنوان</p>
+
+                    <hr className="my-4" />
+                    <div className="flex flex-col gap-4">
+                        {
+                            userStore.getState().user.user?.addresses.map((e, idx) =>
+                                <UserAddressComponent seleted={address} address={e} key={idx} onClick={setAddress} />)
+                        }
+                        <Link to={'/settings'} className="p-4 flex hover:text-[color:var(--text)] justify-between items-center rounded-md bg-[color:var(--secondary-select)]">
+                            <p className="text-md">إضافة عنوان</p>
+                            <i className="fa-solid fa-circle-plus text-lg"></i>
+                        </Link>
+                    </div>
+                    <hr className="mt-5" />
+                    <div className="flex justify-between items-center mt-6">
+                        <h6 className="text-lg font-semibold">الإجمالي</h6>
+                        <h6 className="text-lg font-semibold">{total} جنيه</h6>
+                    </div>
+                    <Button onClick={makeOrder} loading={loading == 'make'} disabled={loading} color={false} className="mt-4 mb-8 flex gap-2 justify-center items-center w-full rounded-md bg-gray-600 hover:bg-gray-500 transition-colors px-6 py-3 font-medium text-[color:var(--text)]">
+                        <i className="fa-solid fa-cart-shopping"></i>
+                        <p>طلب الان</p>
+                    </Button>
                 </div>
-                <Button onClick={makeOrder} loading={loading == 'make'} disabled={loading} color={false} className="mt-4 mb-8 flex gap-2 justify-center items-center w-full rounded-md bg-gray-600 hover:bg-gray-500 transition-colors px-6 py-3 font-medium text-[color:var(--text)]">
-                    <i className="fa-solid fa-cart-shopping"></i>
-                    <p>طلب الان</p>
-                </Button>
             </div>
         </div>
 

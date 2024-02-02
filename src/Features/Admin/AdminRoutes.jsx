@@ -49,8 +49,11 @@ function AuthWrapper() {
             enabled: token != null,
         }
     );
+
     if (isLoading) {
-        return <Spinner />;
+        return <div className='w-screen h-screen flex flex-col items-center justify-center'>
+            <Spinner className='text-2xl' />
+        </div>;
     }
 
     if (data != null && token != null) {
@@ -84,7 +87,7 @@ function AuthWrapper() {
             <SorryDiv message="يوجد مشكلة الرجاء المحاولة مرة اخرى" />
         </div>;
     }
-    if (store.getState().admin.admin == null) { 
+    if (store.getState().admin.admin == null) {
         return <></>
     }
     return <Outlet />;
@@ -96,7 +99,7 @@ function AdminLayout() {
             <Sidebar selected={path.pathname == '/admin' ? "" : path.pathname.split('/admin/')[1].split('/')[0]} className="layout__sidebar lg" />
             <div className="w-100 h-100 flex flex-col gap-5">
                 <AdminNavbar />
-                <div className='p-2 md:p-6'>
+                <div className='p-2 md:p-6 h-screen'>
 
                     <Outlet />
                 </div>

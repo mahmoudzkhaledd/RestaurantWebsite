@@ -19,7 +19,7 @@ export default function CategoryPage({ }) {
     return (
         <section>
             <CustomHeader
-                data={configs.allCategoriesPage}
+                data={configs.categoryPage}
                 image={`https://r4.wallpaperflare.com/wallpaper/837/898/423/food-fruit-healthy-acorn-wallpaper-d950d8edb10a9d9bd657185f60b1c60d.jpg`}
             />
             <div className="col-span-3 flex flex-row flex-wrap justify-center gap-4 ">

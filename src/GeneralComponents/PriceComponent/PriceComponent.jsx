@@ -10,9 +10,9 @@ export default function PriceComponent({ priceObj, className = "", title, }) {
                     {
                         (priceObj?.afterDiscount || 0) > 0 ?
                             <>
-                                <strong className="text-2xl text-inherit">{priceObj?.afterDiscount}$</strong>
-                                <del><p className="text-xl text-inherit">{priceObj?.price}$</p></del>
-                            </> : <p className="text-2xl text-inherit" >{priceObj?.price}$</p>
+                                <strong className="text-2xl text-inherit">{priceObj?.afterDiscount} جنيه</strong>
+                                <s><p className="text-xl text-inherit">{priceObj?.price} جنيه</p></s>
+                            </> : <p className="text-2xl text-inherit" >{priceObj?.price} جنيه</p>
                     }
                 </div>
             }

@@ -4,7 +4,6 @@ import { userAxios } from "@/Utils/UserAxios";
 import Spinner from "@/GeneralElements/Spinner/Spinner";
 import SorryDiv from "@/GeneralComponents/SorryDiv/SorryDiv";
 import Pagination from "@/GeneralComponents/Pagination/Pagination";
-import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { webConfig } from "@/Utils/WebConfigs";
 
