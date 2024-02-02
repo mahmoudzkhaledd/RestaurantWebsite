@@ -248,7 +248,7 @@ export default function MealPage({ }) {
                                 <div className="flex flex-col">
                                     {
                                         meal.imagesUrl?.map((e, idx) =>
-                                            <ImageComponent loading={loading} className=" mb-5" key={idx} text={`صورة ${idx + 1}`} image={e} deleteImage={deleteImage} />)
+                                            <ImageComponent loading={loading} className=" mb-3" key={idx} text={`صورة ${idx + 1}`} image={e} deleteImage={deleteImage} />)
                                     }
                                     <UploadImage loading={loading} name={"file"} id="image-picker" />
                                     {

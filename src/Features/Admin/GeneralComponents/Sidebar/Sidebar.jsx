@@ -4,6 +4,8 @@ import Logo from "@/GeneralElements/Logo/Logo";
 import { useDispatch } from "react-redux";
 import { logOut } from "@/hooks/AdminRedux/AdminModelSlice";
 import { adminAxios } from "@/Utils/AdminAxios";
+import { rolesValidator } from '../../Utils/RolesHelper'
+import { store } from "@/hooks/AdminRedux/AdminStore";
 export default function Sidebar({ className = "", selected }) {
 
     const disp = useDispatch();
@@ -19,20 +21,21 @@ export default function Sidebar({ className = "", selected }) {
                 </div>
                 <ul className="space-y-2 font-medium list-none">
                     {
-                        Object.values(adminConfig.sidebarItems).map((e, idx) => <li key={idx}>
-                            <Link
-                                target={e.newPage ? "_blank" : ""}
-                                onClick={e.action == "logout" ? () => {
-                                    disp(logOut());
-                                    window.location.href = "/admin/login";
-                                } : null}
-                                to={e.link != null ? e.link : e.name && `/admin/${e.name}`}
-                                className={`flex ${selected == e.name ? "bg-[color:var(--primary-select)]" : ""} items-center p-2 text-[color:var(--text)] rounded-lg  hover:bg-[color:var(--primary)] group`}
-                            >
-                                <span className={e.icon}></span>
-                                <span className="ms-3">{e.title}</span>
-                            </Link>
-                        </li>
+                        Object.values(adminConfig.sidebarItems).map((e, idx) =>
+                            rolesValidator(e.roles) ? <li key={idx}>
+                                <Link
+                                    target={e.newPage ? "_blank" : ""}
+                                    onClick={e.action == "logout" ? () => {
+                                        disp(logOut());
+                                        window.location.href = "/admin/login";
+                                    } : null}
+                                    to={e.link != null ? e.link : e.name && `/admin/${e.name}`}
+                                    className={`flex ${selected == e.name ? "bg-[color:var(--primary-select)]" : ""} items-center p-2 text-[color:var(--text)] rounded-lg  hover:bg-[color:var(--primary)] group`}
+                                >
+                                    <span className={e.icon}></span>
+                                    <span className="ms-3">{e.title}</span>
+                                </Link>
+                            </li> : <div key={idx}></div>
                         )
                     }
                     <Link
@@ -51,20 +54,22 @@ export default function Sidebar({ className = "", selected }) {
                         <i className="fa-solid fa-right-from-bracket text-[color:var(--text)]"></i>
                         <span className="ms-3">تسجيل الخروج </span>
                     </Link>
-                    <Link
-                        onClick={async () => {
-                            try {
-                                await adminAxios.put('admins/update-master-roles');
-                            } catch (ex) {
+                    {
+                        store.getState()?.admin?.admin?.master && <Link
+                            onClick={async () => {
+                                try {
+                                    await adminAxios.put('admins/update-master-roles');
+                                } catch (ex) {
 
-                            }
-                        }}
+                                }
+                            }}
 
-                        className={`flex items-center p-2 text-[color:var(--text)] rounded-lg  hover:bg-[color:var(--primary)] group`}
-                    >
+                            className={`flex items-center p-2 text-[color:var(--text)] rounded-lg  hover:bg-[color:var(--primary)] group`}
+                        >
 
-                        <span className="ms-3">تحديث الصلاحيات</span>
-                    </Link>
+                            <span className="ms-3">تحديث الصلاحيات</span>
+                        </Link>
+                    }
 
                 </ul>
             </div>

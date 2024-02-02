@@ -100,6 +100,7 @@ export default function AddNewAdmin({ editMode }) {
 
             const res = editMode ? await adminAxios.put(`/admins/${admin._id}`, { ...data, roles: obj }) : await adminAxios.post("/admins", { ...data, roles: obj });
             if (res.data.admin != null) {
+                refetch()
                 nav(`/admin/admins/${res.data.admin._id}`, { replace: true })
             }
 
@@ -139,7 +140,7 @@ export default function AddNewAdmin({ editMode }) {
         }
         setLoading(null);
     };
-    const { isLoading, error, data, refetch } = useQuery(
+    const { isLoading, error, data, refetch, } = useQuery(
         `get-admin-edit-${params.id}`,
         () => adminAxios.get(`admins/${params.id || ""}`),
         {

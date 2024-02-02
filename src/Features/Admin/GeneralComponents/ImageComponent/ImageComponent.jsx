@@ -5,7 +5,7 @@ export default function ImageComponent({ className, image, text, loading, delete
 
 
     return (
-        <div className={`${className} flex flex-row items-center justify-between rounded-md select-none w-full bg-[color:var(--secondary-select)] p-4`}><Link
+        <div className={`${className} flex flex-row items-center justify-between rounded-md select-none w-full bg-[color:var(--secondary-select)] p-2`}><Link
             to={image?.url}
         >
             {text}

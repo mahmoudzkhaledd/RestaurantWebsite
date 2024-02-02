@@ -10,7 +10,7 @@ import AdminProvider from '@/hooks/AdminRedux/AdminProvider';
 import { adminAxios } from '@/Utils/AdminAxios';
 import adminModel from '@/Models/AdminModel';
 import { useDispatch } from 'react-redux';
-import { setAdmin, logOut } from '@/hooks/AdminRedux/AdminModelSlice';
+import { setAdmin } from '@/hooks/AdminRedux/AdminModelSlice';
 import Spinner from '@/GeneralElements/Spinner/Spinner';
 
 import { QueryClientProvider, QueryClient, useQuery } from 'react-query';
