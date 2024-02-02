@@ -83,7 +83,7 @@ export default function UploadCategoryImage({ category,refetch }) {
             <div className="flex flex-col mb-4">
                 {
                     category?.image == null ?
-                        <UploadImage name={"file"} id="image-picker" />
+                        <UploadImage loading={loading} name={"file"} id="image-picker" />
                         : <ImageComponent loading={loading} text="الصورة المصغرة" image={category?.image} deleteImage={deleteImage} />
                 }
                 {

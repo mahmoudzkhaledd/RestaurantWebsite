@@ -231,7 +231,7 @@ export default function MealPage({ }) {
                                 <div className="flex flex-col mb-4">
                                     {
                                         meal?.thumbnailUrl == null ?
-                                            <UploadImage name={"file"} id="image-picker" />
+                                            <UploadImage loading={loading} name={"file"} id="image-picker" />
                                             : <ImageComponent loading={loading} text="الصورة المصغرة" image={meal?.thumbnailUrl} deleteImage={deleteImage} />
                                     }
                                     {
@@ -250,7 +250,7 @@ export default function MealPage({ }) {
                                         meal.imagesUrl?.map((e, idx) =>
                                             <ImageComponent loading={loading} className=" mb-5" key={idx} text={`صورة ${idx + 1}`} image={e} deleteImage={deleteImage} />)
                                     }
-                                    <UploadImage name={"file"} id="image-picker" />
+                                    <UploadImage loading={loading} name={"file"} id="image-picker" />
                                     {
                                         loading == 'image' && <ProgressBar showValue={true} value={percentage?.progress || 0} />
                                     }

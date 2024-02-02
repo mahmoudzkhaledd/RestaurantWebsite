@@ -1,10 +1,11 @@
 
-export default function UploadImage({ onChange, id, name, className }) {
+export default function UploadImage({ onChange, id, name, className, loading }) {
 
 
     return (
         <div className={`font-[sans-serif] ${className} `}>
             <input
+                disabled={loading}
                 id={id}
                 onChange={onChange}
                 multiple={false}
