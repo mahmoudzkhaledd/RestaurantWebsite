@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text: rgb(255, 255, 255);
+  --text-fade: rgb(168, 168, 168);
+  --text-invert: rgb(27, 27, 27);
+  --background: black;
+  --primary: #ffcc00;
+  --primary-select: #bf9900;
+  --secondary: #171717;
+  --secondary-select: #636363;
+}
+
+
+
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Cairo', sans-serif;
+}
+
+.layout__sidebar {
+  min-height: 100vh;
+  width: 20rem;
+  padding-inline: 15px;
+  padding-block: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: var(--secondary);
+  transition: .3s;
+}
+
+html,
+body,
+#root {
+  max-width: 100vw;
+  color: var(--text);
+  scroll-behavior: smooth;
+  background-color: var(--background) !important;
+  font-size: 100%;
+  transition: 0.3s color ease-in-out;
+}
+
+body {
+  background-color: var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/**/
+
+ul {
+  list-style: circle;
+}
+
+ol {
+  list-style: decimal;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*tiptap*/
+
+
+.menu-bar {
+  background-color: var(--secondary-select);
+  border: 1px solid var(--text);
+  border-top: 1px solid var(--text);
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+
+
+
+.tiptap {
+  border: 1px solid var(--text);
+  border-top: none;
+  border-radius: 0px 0px 10px 10px;
+  min-height: 50px;
+  padding: 10px;
+}
+
+.tiptap-parse {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.menu-bar button {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.menu-bar button:hover {
+  background-color: var(--primary);
+}
+
+.tiptap>*+* {
+  margin-top: 0.75em;
+}
+
+.tiptap ul,
+.tiptap ol {
+  padding: 0 1rem;
+}
+
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
+  line-height: normal;
+
+}
+
+.tiptap h1 {
+  font-size: 50px;
+}
+
+.tiptap h2 {
+  font-size: 40px;
+}
+
+.tiptap h3 {
+  font-size: 30px;
+}
+
+.tiptap h4 {
+  font-size: 25px;
+}
+
+.tiptap h5 {
+  font-size: 20px;
+}
+
+.tiptap h6 {
+  font-size: 19px;
+}
+
+.tiptap code {
+  background-color: #616161;
+  color: #616161;
+}
+
+.tiptap pre {
+  background: #0D0D0D;
+  color: #FFF;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.tiptap code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+}
+
+.tiptap blockquote {
+  padding-left: 1rem;
+  border-left: 2px solid #0D0D0D;
+}
+
+.tiptap hr {
+  border: none;
+  border-top: 2px solid #0D0D0D;
+  margin: 2rem 0;
+}
+
+/*tiptap*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+ol,
+ul,
+span {
+  color: var(--text);
+}
+
+h1 {
+  font-size: 3.652rem;
+  /* 90.4px */
+}
+
+h2 {
+  font-size: 3.00rem;
+  /* 64px */
+}
+
+h3 {
+  font-size: 2.327rem;
+  /* 45.28px */
+}
+
+h4 {
+  font-size: 1.999rem;
+  /* 32px */
+}
+
+h5 {
+  font-size: 1.414rem;
+  /* 22.56px */
+}
+
+h6 {
+  font-size: 1.08rem;
+  /* 22.56px */
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+/**/
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
