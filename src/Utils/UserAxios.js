@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const userAxios = axios.create({
     baseURL: process.env.NODE_ENV != 'development' ? 
-    'https://medical-back.vercel.app/' : 
+    'https://restaurant-rose-five.vercel.app/' : 
     "http://localhost:3000/",
     withCredentials: true,
     headers: {
