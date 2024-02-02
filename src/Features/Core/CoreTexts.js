@@ -9,6 +9,10 @@ export const configs = {
             href: "/menu",
         },
         {
+            text: "التصنيفات",
+            href: "/categories",
+        },
+        {
             text: 'اتصل بنا',
             href: "/contact"
         },
