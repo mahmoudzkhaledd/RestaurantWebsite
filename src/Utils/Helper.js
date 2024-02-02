@@ -66,6 +66,9 @@ function timeSince(date) {
     if (interval > 1) {
         return Math.floor(interval) + " دقيقة";
     }
+    if (Math.floor(seconds) < 0) {
+        return 0 + "ثانية";
+    }
     return Math.floor(seconds) + " ثانية";
 }
 export {
