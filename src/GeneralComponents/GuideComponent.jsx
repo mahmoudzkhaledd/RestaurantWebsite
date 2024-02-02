@@ -4,7 +4,7 @@ export default function GuideComponent({ guide, children, className = "" }) {
     const [isOpen, setOpen] = useState(true);
 
     return (
-        <div className={`bg-[color:var(--secondary)] w-full ${className} p-4 rounded-lg flex flex-col `}>
+        <div className={`bg-[color:var(--secondary)] w-full ${className} p-4 rounded-lg flex flex-col h-fit`}>
             <div className="flex gap-3 items-center  justify-between">
                 <div className="flex gap-3 items-center ">
                     <i className="fa-solid fa-lightbulb text-2xl text-[color:var(--primary)]"></i>
