@@ -87,7 +87,7 @@ function MainRoute() {
     return;
   }
   if (userStore.getState().user.user == null && localStorage.getItem('token') != null) {
-    return <p> loading ...</p>
+    return <></>
   }
 
   return (

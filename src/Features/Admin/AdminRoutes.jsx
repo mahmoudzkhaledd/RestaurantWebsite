@@ -85,7 +85,7 @@ function AuthWrapper() {
         </div>;
     }
     if (store.getState().admin.admin == null) { 
-        return <p> loading ...</p>
+        return <></>
     }
     return <Outlet />;
 }
