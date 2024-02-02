@@ -31,9 +31,9 @@ export default function About({ className = "" }) {
                         </li>)}
 
                     </ul>
-                    <Link href="/" className="btn btn-primary">
+                    <Link to="/contact" className="btn btn-primary">
                         <Button>
-                            من نحن؟
+                            اتصل بنا
                         </Button>
                     </Link>
                 </div>

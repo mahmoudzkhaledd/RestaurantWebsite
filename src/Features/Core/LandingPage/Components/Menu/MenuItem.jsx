@@ -7,11 +7,11 @@ export default function MenuItem({ meal }) {
     return (
         <li className="group bg-[color:var(--secondary)] rounded-lg pb-4">
             <Link to={`/meals/${meal._id}`}>
-                <div className="h-fit  overflow-hidden grid bg-[color:var(--secondary)] place-items-center rounded-b-none rounded-lg group-hover:bg-[color:var(--primary)] ease-linear duration-200 ">
+                <div className="h-fit  overflow-hidden mb-4 grid bg-[color:var(--secondary)] place-items-center rounded-b-none rounded-lg group-hover:bg-[color:var(--primary)] ease-linear duration-200 ">
                     <img
                         src={meal.thumbnailUrl?.url || "/images/food.png"}
                         alt="food image"
-                        className="max-h-56 group-hover:scale-110 object-cover overflow-hidden grid place-items-center rounded-b-none rounded-lg ease-linear duration-200 "
+                        className="h-[200px] w-full group-hover:scale-110 object-cover overflow-hidden grid place-items-center rounded-b-none rounded-lg ease-linear duration-200 "
                     />
                 </div>
                 <div className="px-5 flex flex-col justify-end ">

@@ -5,16 +5,14 @@ export default function CategoryComp({ id, bgColor = "#ee890f", image = "", diag
 
 
     return (
-        <Link to={`/categories/${id}`} style={{ backgroundColor: bgColor }} 
-        className='relative w-full h-full flex-col items-center  rounded-lg overflow-hidden'>
-            <div style={{ backgroundColor: diagonalColor }} className={`${style.cont}`} />
+        <Link to={`/categories/${id}`}
+            style={{
+                background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${image}')`
+            }}
+            className='relative w-full h-full flex-col items-center  rounded-lg overflow-hidden'>
+            
             <div className={`px-10 py-4 w-full h-full flex gap-4  md:w-fit md:flex-1 relative`}>
 
-                <img
-                    src={image}
-                    alt="category image"
-                    className=" w-20 object-cover rounded-lg "
-                />
                 <div className='my-auto'>
                     <div className="mb-2">
                         <h5 className=' text-xl font-bold' >{title}</h5>

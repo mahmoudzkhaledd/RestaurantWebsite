@@ -1,6 +1,7 @@
 .cont {
+    background-color: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
     position: absolute;
-    width: 50%;
+    width: 90%;
     height: 100%;
-    clip-path: polygon(40% 0,100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(20% 0,100% 0, 100% 100%, 0% 100%);
 }
