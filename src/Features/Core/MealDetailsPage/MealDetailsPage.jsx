@@ -29,7 +29,7 @@ export default function MealDetailsPage({ }) {
         return <Spinner />;
     }
     if (error || data == null || data.data == null || data.data.meal == null) {
-        return <SorryDiv message="لم نتمكن من العثور على الخدمة المطلوبة الرجاء اعادة المحاولة مع خدمة مختلفة" />;
+        return <SorryDiv message="لم نتمكن من العثور على الوجبة المطلوبة" />;
     }
     const meal = data.data.meal;
     const orderMeal = async () => {
